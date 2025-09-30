@@ -16,7 +16,7 @@ function App() {
     </div>
     
     <Router>
-      <Routes>
+      <Routes> 
       
         <Route path='/' element={<Home setLoader={setLoader} />} />
         <Route path='/detail' element={<Detail />} />
