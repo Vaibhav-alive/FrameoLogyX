@@ -5,13 +5,13 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(15, 15, 26);
+  background-color: oklch(0.1 0 264);
 }
 *{
   padding: 0;
@@ -615,7 +615,7 @@ h1{
   /* align-items: center; */
 }
 .list h2{
-  margin: 5px auto;
+  margin: 20px auto;
 }
 .flex-card{
   display: flex;
@@ -658,10 +658,10 @@ h1{
 .d-cont{
   width: fit-content;
   height: fit-content;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0);
   color: #c1c4c7;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 26px;
   margin: 0;
   padding: 4px 8px;
   display: flex;
@@ -714,4 +714,9 @@ h1{
   width: fit-content;
   margin: 15px auto;
   padding: 4px 20px;
+}
+.line{
+  width: min(400px, 60%);
+  border-top: 1px solid white;
+  margin: 10px auto;
 }

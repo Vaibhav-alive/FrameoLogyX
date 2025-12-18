@@ -14,6 +14,7 @@ function list() {
       {Genrelist.genere.map((item, index) => index <= 4 && (
         <section key={item.id} ref={(el) =>{if (el)card.current[index] = el }}>
           <h2>{item.name}</h2>
+          <div className="line"></div>
           <MovieCard gid={item.id} />
         </section>
       ))}
