@@ -7,12 +7,10 @@ const OMDB_KEY = "1e399cbd";
 function MovieCard({ gid }) {
   const clientID =
     "70c3cc51cdd9d1e452812982f939f35d15aeec8f02d4e9bbd0a512cbe6a2363f";
-
   const [ids, setIds] = useState([]);
   const [details, setDetails] = useState([]);
   const [cache, setCache] = useState({});
 
-  // Fetch Trakt movies by genre
   useEffect(() => {
     fetch(`https://api.trakt.tv/movies/popular?genres=${gid}&limit=8`, {
       method: "GET",
@@ -27,7 +25,7 @@ function MovieCard({ gid }) {
       .catch((err) => console.log("Trakt error:", err));
   }, [gid]);
 
-  // Fetch OMDb details with caching
+  const [ani,SetAni] = useState(false)
   useEffect(() => {
     if (ids.length > 0) {
       Promise.all(
@@ -41,12 +39,10 @@ function MovieCard({ gid }) {
           );
           const data = await res.json();
 
-          // store in cache
           setCache((prev) => ({ ...prev, [imdbID]: data }));
           return data;
         })
       ).then((allDetails) => {
-        // remove duplicates
         const unique = allDetails.filter(
           (v, i, a) => v.imdbID && a.findIndex((t) => t.imdbID === v.imdbID) === i
         );
@@ -54,12 +50,43 @@ function MovieCard({ gid }) {
       });
     }
   }, [ids]);
-  if (!details) return <div>Loading!!!</div>
-  if (!cache) return <div>Loading!!!</div>
+  if (!details) return <div>
+    <div className="blur-opacity">
+
+    </div>
+  </div>
+
+  const slider = useRef([])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view')
+          
+        }
+        else{
+          entry.target.classList.remove('in-view')
+          
+        }
+      })
+    },
+      {
+        threshold: 0.5
+      })
+    slider.current.forEach(entry=>{
+      if (entry){
+        observer.observe(entry)
+      }
+    })
+    return () => observer.disconnect()
+  }, [cache])
+
+  if (!cache) return <div></div>
   return (
-    <div className="flex-card">
-      {details.map((item, index) =>  (
-        <Link to={`/movie/${item.imdbID}`} key={index}>
+    <div className="flex-card card">
+      {details.map((item, index) => ( 
+        <Link ref={el => (slider.current[index] = el)} className="idk" to={`/movie/${item.imdbID}`} key={index}  >
           <Slider movie={item} />
         </Link>
       ))}

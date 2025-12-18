@@ -11,8 +11,8 @@ function App() {
   return (
     <>
     <div className="h-flex">
-      <div className={loader==true? 'loader' : 'none'}></div>
-    <div className={loader == true? 'loading': 'd-none'}>Loading....</div>
+
+      <div className={loader == true? 'loading': 'd-none'}>Loading....</div>
     </div>
     
     <Router>

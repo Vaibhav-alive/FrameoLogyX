@@ -77,7 +77,7 @@ function Search({ setLoader }) {
                 ))}
               </div>
 
-              <button className="btn" onClick={loadmore}>Load More..</button>
+              <button className="btn load" onClick={loadmore}>Load More..</button>
             </>
           )}
         </div>

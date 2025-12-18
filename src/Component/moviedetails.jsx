@@ -43,8 +43,16 @@ function Moviedetail() {
             });
     },[title])
 
-    if (!movies) return <div>Loading...</div>;
-    if (!vid) return <div>Loading...</div>;
+    if (!movies) return <div>
+        <div className="blur-opacity">
+            Loading....
+        </div>
+    </div>;
+    if (!vid) return  <div>
+        <div className="blur-opacity">
+            Loading....
+        </div>
+    </div>;
     return (
         <>
 

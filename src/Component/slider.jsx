@@ -8,7 +8,7 @@ function Slider( {movie} ){
     return(
             <div className="t-index">
                     <div className="t-flex" onClick={navitm}>
-                        <img src={movie.Poster} alt="" />
+                        <img src={movie.Poster} alt="" loading="lazy" />
                         <div className="t-desc">
                             <div className="name">{movie.Title}</div>
                             {/* <div className="release">{movie.Year}</div> */}
@@ -21,3 +21,4 @@ function Slider( {movie} ){
 }
 
 export default Slider;
+

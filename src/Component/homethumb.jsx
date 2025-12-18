@@ -20,25 +20,12 @@ function Home() {
     if (value !== '') {
       navigate(`/movie/search/${value}`);
     }
-
   }
-
   function handleEsc() {
     navigate('/')
   }
 
-  useEffect(() => {
-    const handlescroll = () => {
-      if (window.scrollY > 0) {
-        setScroll(true)
-      }
-      else {
-        setScroll(false)
-      }
-    }
-    window.addEventListener('scroll', handlescroll)
-    return () => window.removeEventListener('scroll', handlescroll)
-  }, [])
+ 
 
 
   return (
@@ -46,7 +33,7 @@ function Home() {
       <section className="wrap">
 
 
-        <section className={`navbar ${scroll ? 'scrolled' : 'unscroll'}`}>
+        <section className='navbar'>
 
 
           <div className="banner" onClick={handleEsc}>
