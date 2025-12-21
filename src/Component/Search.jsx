@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router';
 import { Link, Route, Routes } from 'react-router';
 import Thumb from './Thumb'
@@ -46,8 +46,30 @@ function Search({ setLoader }) {
     })
 
   }, [name, page])
+  const slider = useRef([])
+  useEffect(()=>{
+    const observer = new IntersectionObserver(entries =>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view')
+        }
+        else{
+          entry.target.classList.remove('in-view')
+        }
+      })
 
-
+      
+    },
+    {
+      threshold: 0.3
+    })
+    slider.current.forEach(entry=>{
+      if(entry){
+        observer.observe(entry)
+      }
+    })
+    return () => observer.disconnect()
+  }, [movie])
   function loadmore() {
     setPage(prev => prev + 1)
   }
@@ -70,8 +92,8 @@ function Search({ setLoader }) {
 
             <>
               <div className="movies-thumb">
-                {movie.map((movie) => (
-                  <Link to={`/movie/${movie.imdbID}`} key={movie.imdbID}>
+                {movie.map((movie, index) => (
+                  <Link to={`/movie/${movie.imdbID}`} className='idk' ref={el => (slider.current[index] = el)} key={movie.imdbID}>
                     <Thumb movie={movie} />
                   </Link>
                 ))}

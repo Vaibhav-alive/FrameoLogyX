@@ -86,7 +86,7 @@ function MovieCard({ gid }) {
   return (
     <div className="flex-card card">
       {details.map((item, index) => ( 
-        <Link ref={el => (slider.current[index] = el)} className="idk" to={`/movie/${item.imdbID}`} key={index}  >
+        <Link ref={el => (slider.current[index] = el)} className="idk" to={`/movie/${item.imdbID}`}  >
           <Slider movie={item} />
         </Link>
       ))}
